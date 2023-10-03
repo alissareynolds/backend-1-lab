@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-
+const inputs = [];
 const app = express();
 
 app.use(express.json());
@@ -22,6 +22,12 @@ app.get("/weather/:temperature", (req, res) => {
   const phrase = `<h3>It was ${temperature} today</h3>`;
   res.status(200).send(phrase);
 });
+
+app.get("/challenge", (req, res) => {
+  inputs.push(req.query.input)
+  res.status(200).send(inputs);
+});
+
 
 app.listen(4000, () => console.log("Server running on port 4000"));
 

@@ -13,6 +13,10 @@
     <ul id="people" class=""></ul>
 
     <button id="button">GET Friends List</button>
+    
+      <input type="text" id="Name" name="Name" size="40">
+      <button id="button2">New Friend</button>
+      <p id="challenge"></p>
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
@@ -32,6 +36,22 @@
               '<li class="text-danger">' + err.message + "</li>";
           });
       };
+      
+
+    </script>
+    <script>
+    document.getElementById("button2").onclick = function () {
+      let inputBox = document.getElementById('Name')
+        axios
+          .get(`http://localhost:4000/challenge/?input=${inputBox.value}`)
+          .then(function(response) {
+          const array = response.data;
+          console.log(array);
+          let challenge = document.getElementById('challenge');
+          challenge.innerText = array;
+          
+      });
+    };
     </script>
   </body>
 </html>
